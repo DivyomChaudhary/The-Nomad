@@ -1,0 +1,21 @@
+
+
+.border-right{
+    border-right: 0.05rem solid gray;
+    opacity: 60;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+#featured div img{
+    height: 80px;
+    width: 130px;
+    margin-bottom: 2rem;
+}
+
+#adminForm{
+    height: 80vh;
+}
