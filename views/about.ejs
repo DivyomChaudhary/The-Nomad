@@ -1,39 +1,42 @@
-<div class="container-fluid text-center mt-5">
-    <p class="mt-2 mb-3 border-bottom fst-italic fs-1">
+<%- include ("partials/header") %>
+<%- include ("partials/navbar") %>
+<div class="container-fluid text-center mt-3">
+    <p class="mt-2 mb-3 pb-3 border-bottom fst-italic fs-1">
         Who am I?
     </p>
 
     <div class="row">
-        <div class="col-md-12 col-xl-6 border-right p-5">
-    <div class="mb-3" style="height: 200px; width: 100%; justify-content: center; display: flex;">
+        <div class="col-md-12 col-xl-6 border-right p-3 px-4 mb-3">
+    <div class="mb-3 d-flex justify-content-center" style="height: 200px; width: 100%;">
         <img src="/images/The Nomad.jpg" alt="The Nomad" class="border border-secondary border-2 rounded" style="height: 100%;">
     </div>
-    <p class="mb-5 fs-3">
+    <p class="mb-3 fs-3">
         Hi, I'm John Doe! Your friendly-neighborhood traveller a.k.a. The Nomad.
     </p>
-    <p class="text-center fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit ullam veritatis, eum vel iure commodi. Maxime enim earum nam consequuntur, labore fugit ipsam quis consectetur ea unde dolorum, illo architecto cum ut dolorem accusamus culpa sed ipsum temporibus! Necessitatibus, vitae.</p>
-    <p class="text-center fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse dolor est odit quam natus obcaecati, quae voluptatum vero possimus nobis cumque beatae saepe, perferendis necessitatibus?</p>
+    <p class="text-center fs-5 px-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem quam nulla repudiandae, error adipisci vero ullam perspiciatis maiores illum eum esse quasi!</p>
 </div>
     <div class="col-md-12 col-xl-6">
-        <p class="lead fs-2 mb-5 pt-5">
+        <p class="lead fs-2 mb-4 p-1 fw-semibold">
             Most Popular Blogs
         </p>
         <p class="lead fs-5">
             <ul class="list-unstyled">
-                <li class="mb-2"><a href="">How to Save for a Trip</a></li>
-                <li class="mb-2"><a href="">7 Steps for Planning Your Trip</a></li>
-                <li class="mb-2"><a href="">Get the Right Gear</a></li>
-                <li class="mb-2"><a href="">How to Buy Travel Insurance</a></li>
-                <li class="mb-4"><a href="">10 Travel Scams to Avoid</a></li>
+                <li class="mb-1"><a href="">How to Save for a Trip</a></li>
+                <li class="mb-1"><a href="">7 Steps for Planning Your Trip</a></li>
+                <li class="mb-1"><a href="">Get the Right Gear</a></li>
+                <li class="mb-1"><a href="">How to Buy Travel Insurance</a></li>
+                <li><a href="">10 Travel Scams to Avoid</a></li>
             </ul>
         </p>
-        <p class="lead fs-3 pt-5">As featured on</p>
-        <div class="row mt-5" id="featured">
-            <div class="col-md-6 col-xl-3"><img src="/images/Featured/BBC-Logo.jpg" alt="BBC"></div>
-            <div class="col-md-6 col-xl-3"><img src="/images/Featured/Lonely-Planet-logo.jpg" alt="lonely planet"></div>
-            <div class="col-md-6 col-xl-3"><img src="/images/Featured/National-Geographic-logo.webp" alt="Nat geo"></div>
-            <div class="col-md-6 col-xl-3"><img src="/images/Featured/the-guardian-logo.jpg" alt="the guardian"></div>
+        <p class="lead fs-3 mt-5 fw-medium">As featured on</p>
+        <div class="row mt-4" id="featured">
+            <div class="col-md-6 col-xl-3"><img src="/images/Featured/BBC-Logo.jpg" alt="BBC" class="rounded"></div>
+            <div class="col-md-6 col-xl-3"><img src="/images/Featured/Lonely-Planet-logo.jpg" alt="lonely planet" class="rounded"></div>
+            <div class="col-md-6 col-xl-3"><img src="/images/Featured/National-Geographic-logo.webp" alt="Nat geo" class="rounded"></div>
+            <div class="col-md-6 col-xl-3"><img src="/images/Featured/the-guardian-logo.jpg" alt="the guardian" class="rounded"></div>
         </div>
         </div>
     </div>
 </div>
+
+<%- include ("partials/mini-footer") %> 

@@ -17,5 +17,6 @@ a{
 }
 
 #adminForm{
-    height: 80vh;
+    padding: 5rem;
+    height: 85vh;
 }

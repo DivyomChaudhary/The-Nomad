@@ -18,11 +18,39 @@ app.get("/", (req, res) =>
 
 app.get("/admin", (req, res)=>
 {
-    res.render("addblog.ejs",
+    res.render("auth.ejs",
         {
             thisYear : theDate,
         }
     );
+})
+
+const trueUser = "D.C.";
+const truePwd = "Divss2618divyom";
+
+app.post("/submit", (req, res) =>
+{
+    var user = req.body["username"];
+    var pwd = req.body["password"];
+    if (user === trueUser && pwd ===truePwd)
+    {
+        res.render("new-blog.ejs",
+            {
+                adminName : user,
+            }
+        )
+    }
+    
+    else{
+        res.render("auth.ejs");
+    }
+})
+
+app.get("/about", (req, res)=>
+{
+    res.render("about.ejs", {
+        thisYear : theDate,
+    });
 })
 
 app.listen(port, ()=>
