@@ -1,4 +1,7 @@
-
+.font-brush{
+    font-family: 'Comforter Brush', serif;
+    font-weight: 200;
+}
 
 .border-right{
     border-right: 0.05rem solid gray;
@@ -20,3 +23,26 @@ a{
     padding: 5rem;
     height: 85vh;
 }
+
+.alter-w-50{
+    width: 50%;
+}
+
+.alter-w-25{
+    width: 25%;
+}
+
+@media screen and (max-width: 991px) {
+    .alter-w-50{
+        width: 100%;
+    }
+
+    .alter-p{
+        padding-bottom: 1.25rem;
+    }
+
+    .alter-w-25{
+        width: 100%;
+    }
+}
+

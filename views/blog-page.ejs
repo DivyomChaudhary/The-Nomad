@@ -1,0 +1,20 @@
+<%- include ("partials/header") %>
+
+<%- include ("partials/navbar") %>
+
+<div class="container">
+    <h1 class="fs-2 lead mb-2"> <%= titleName %> </h1>
+    <p class="fs-5 mb-3"> - by <%= authorName %> </p>
+
+    <div class="mb-3 d-flex justify-content-center" style="height: 400px; width: auto;">
+        <img src="/images/uploads/ <%= highlight %> " alt="highlight image">
+    </div>
+
+    <pre class="lead fs-4" id="description">
+        <%= description %>
+    </pre>
+
+</div>
+
+
+<%- include ("partials/footer") %>
