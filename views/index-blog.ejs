@@ -1,0 +1,24 @@
+<%- include ("partials/header") %> <%- include ("partials/navbar") %>
+
+<div class="container">
+  <h1 class="fs-1 text-center lead mb-1 pt-4"><%= titleName %></h1>
+  <p class="fs-5 mb-5 text-center">- by <%= authorName %></p>
+
+  <!-- TODO: Start rendering without images -->
+
+  <div
+    class="mb-5 d-flex justify-content-center"
+    style="height: 500px; width: auto"
+  >
+    <img src="<%= image %>" alt="<%= titleName %>" />
+  </div>
+
+  <div class="content-container mb-5 p-5">
+    <p class="lead d-flex justify-content-start fs-4" id="description">
+      <%- description %>
+    </p>
+  </div>
+</div>
+<p class="fs-5 text-center">Note: This might not be my own data</p>
+
+<%- include ("partials/footer") %>

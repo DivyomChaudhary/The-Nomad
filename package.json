@@ -9,17 +9,27 @@
     "blogging",
     "travel-blog"
   ],
+  "homepage": "https://github.com/DivyomChaudhary/The-Nomad#readme",
+  "bugs": {
+    "url": "https://github.com/DivyomChaudhary/The-Nomad/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DivyomChaudhary/The-Nomad.git"
+  },
   "license": "ISC",
   "author": "Divyom Chaudhary",
   "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "multer": "^1.4.5-lts.1"
-  }
+  },
+  "devDependencies": {}
 }
