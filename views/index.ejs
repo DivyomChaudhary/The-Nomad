@@ -26,7 +26,7 @@
 </div>
 <section id="get-started">
   <div class="container mt-5 pt-5">
-    <p class="mt-3 pt-3 mb-3 pb-3 fst-italic fs-1">Get Started</p>
+    <p class="my-3 py-3 fst-italic fs-1">Get Started</p>
     <div class="row">
       <div class="col-xl-4 col-md-12 mb-3">
         <div class="bg-whit">
@@ -186,19 +186,29 @@
       <p class="lead fs-2 mt-3 fw-semibold">Most Popular Blogs</p>
       <ul class="list-unstyled">
         <li class="mb-1">
-          <a class="text-success" href="/blog/how-to-save-for-a-trip">How to Save for a Trip</a>
+          <a class="text-success" href="/blog/how-to-save-for-a-trip"
+            >How to Save for a Trip</a
+          >
         </li>
         <li class="mb-1">
-          <a class="text-success" href="/blog/how-to-plan-a-trip">5 Steps for Planning Your Trip</a>
+          <a class="text-success" href="/blog/how-to-plan-a-trip"
+            >5 Steps for Planning Your Trip</a
+          >
         </li>
         <li class="mb-1">
-          <a class="text-success" href="/blog/solo-female">Solo Female Travel</a>
+          <a class="text-success" href="/blog/solo-female"
+            >Solo Female Travel</a
+          >
         </li>
         <li class="mb-1">
-          <a class="text-success" href="/blog/finding-accomodation">How to Find Great Accomodations</a>
+          <a class="text-success" href="/blog/finding-accomodation"
+            >How to Find Great Accomodations</a
+          >
         </li>
         <li class="mb-3">
-          <a class="text-success" href="/blog/travel-scams-to-avoid">5 Travel Scams to Avoid</a>
+          <a class="text-success" href="/blog/travel-scams-to-avoid"
+            >5 Travel Scams to Avoid</a
+          >
         </li>
       </ul>
       <p class="lead fs-3 pt-4 fw-medium">As featured on</p>
@@ -231,4 +241,188 @@
     </div>
   </div>
 </div>
-<%-include ("partials/footer") %>
+
+<div class="carousel-container container-fluid my-5" id="Places-to-visit">
+  <p class="my-3 py-3 fst-italic fs-1 container">Places to Visit</p>
+  <div id="carouselCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              src="/images/Places-to-visit/South-east-asia.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-4">
+            <img
+              src="/images/Places-to-visit/Middle-east.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-4">
+            <img
+              src="/images/Places-to-visit/Africa.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-4">
+            <img
+              src="/images/Places-to-visit/North-america.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-4">
+            <img
+              src="/images/Places-to-visit/Oceania.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-4">
+            <img
+              src="/images/Places-to-visit/South-America.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon bg-danger rounded" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon bg-danger rounded" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="carousel-grid-container container-fluid my-5" id="Places-to-visit-grid">
+  <p class="my-3 py-3 fst-italic fs-1 container">Places to Visit</p>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <img
+        src="/images/Places-to-visit/South-east-asia.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-4 mb-3">
+      <img
+        src="/images/Places-to-visit/Middle-east.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-4 mb-3">
+      <img
+        src="/images/Places-to-visit/Africa.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <img
+        src="/images/Places-to-visit/North-america.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-4 mb-3">
+      <img
+        src="/images/Places-to-visit/Oceania.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-4 mb-3">
+      <img
+        src="/images/Places-to-visit/South-America.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+  </div>
+</div>
+
+<% if (locals.newBlog && locals.newBlog.length > 0){ %>
+<div class="container-fluid mt-5 pt-5">
+  <p class="my-3 py-3 fst-italic fs-1">New Blogs</p>
+  <div class="row my-5">
+    <% newBlog.forEach((blog, index) => { %>
+    <div class="col-xl-4 col-md-12 mb-3" data-title="<%= blog.title %>">
+      <div class="bg-dark text-center">
+        <form action="/remove" method="POST">
+          <input type="hidden" name="index" value="<%= index %>" />
+          <a href="/new-blog/<%= index %>">
+            <div class="card text-bg-dark border-2 border-whit br-0">
+              <img
+                src="<%= blog.image %>"
+                class="card-img fst-bold opacity-50"
+                alt="<%= blog.title %>"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 d-flex justify-content-center align-items-center"
+                >
+                  <%= blog.title %>
+                </h5>
+              </div>
+            </div>
+          </a>
+          <button type="submit" class="btn btn-danger remove-btn mt-1">
+            Remove
+          </button>
+        </form>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</div>
+<% } %> <%-include ("partials/footer") %>

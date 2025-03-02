@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import multer from "multer";
 
 const app= express();
@@ -17,17 +16,20 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+var newBlog= [];
+
+
 var theDate= new Date().getFullYear();
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.urlencoded({extended : false}));
-
+app.use(express.urlencoded({extended : true}));
 app.use(express.static("public"));
 
 app.get("/", (req, res) =>
-{
+{   
+    console.log(newBlog);
     res.render("index.ejs", {
         thisYear : theDate,
+        newBlog : newBlog,
     });
 })
 
@@ -41,7 +43,7 @@ app.get("/admin", (req, res)=>
 })
 
 const trueUser = "D.C.";
-const truePwd = "Divss2618divyom";
+const truePwd = "test";
 
 app.post("/submit", (req, res) =>
 {
@@ -64,11 +66,54 @@ app.post("/submit", (req, res) =>
     }
 })
 
-
 app.post("/upload", upload.single("highlight"), (req, res) =>
 {   
-    return res.redirect("/admin");
+    console.log(req.body);
+    console.log(req.file)
+    
+    const { titleName, authorName, description } = req.body;
+    const image = req.file ? `/images/uploads/${req.file.filename}` : null;
+
+    const newBlogEntry = {
+        title: titleName,
+        author: authorName,
+        description: description,
+        image: image,
+    };
+
+    newBlog.push(newBlogEntry);
+    return res.redirect("/");
 })
+
+app.post("/remove", (req, res) => {
+    const index = parseInt(req.body.index);
+    if (!isNaN(index) && index >= 0 && index < newBlog.length) {
+        newBlog.splice(index, 1);
+    }
+    res.redirect("/");
+});
+
+app.get("/new-blog/:index", (req, res) => {
+    const index = parseInt(req.params.index);
+    if (!isNaN(index) && index >= 0 && index < newBlog.length) {
+        const blog = newBlog[index];
+        res.render("index-blog.ejs", {
+            titleName: blog.title,
+            authorName: blog.author,
+            image: blog.image,
+            description: blog.description,
+            thisYear : theDate,
+        });
+    } else {
+        if (isNaN(index) || index < 0) {
+            res.status(400).send("Invalid blog index");
+        } else if (newBlog.length === 0) {
+            res.status(404).send("No blogs found");
+        } else {
+            res.status(404).send("Blog not found");
+        }
+    }
+});
 
 app.get("/blog/get-inspired", (req, res) =>
 {
