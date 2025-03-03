@@ -1,4 +1,6 @@
-<%- include ("partials/header") %> <%- include ("partials/navbar") %>
+<%- include ("partials/header") %>
+
+<%- include ("partials/navbar") %>
 
 <div class="d-flex w-100 vh-100 text-bg-dark position-relative shadow">
   <div
@@ -242,6 +244,8 @@
   </div>
 </div>
 
+<!-- TODO: Carousel image size consistency maintenance -->
+
 <div class="carousel-container container-fluid my-5" id="Places-to-visit">
   <p class="my-3 py-3 fst-italic fs-1 container">Places to Visit</p>
   <div id="carouselCaptions" class="carousel slide">
@@ -260,61 +264,115 @@
         data-bs-slide-to="1"
         aria-label="Slide 2"
       ></button>
-      <button
-        type="button"
-        data-bs-target="#carouselCaptions"
-        data-bs-slide-to="2"
-        aria-label="Slide 3"
-      ></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="row">
           <div class="col-md-4">
-            <img
-              src="/images/Places-to-visit/South-east-asia.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <div class="card text-bg-dark border-2 place-card">
+              <img
+                src="/images/Places-to-visit/South-east-asia.jpg"
+                class="card-img fst-bold opacity-50"
+                alt="man planning"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 fs-3 d-flex justify-content-center align-items-center"
+                >
+                  South East Asia
+                </h5>
+              </div>
+            </div>
           </div>
           <div class="col-md-4">
-            <img
-              src="/images/Places-to-visit/Middle-east.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <div class="card text-bg-dark border-2 place-card">
+              <img
+                src="/images/Places-to-visit/Middle-east.jpg"
+                class="card-img fst-bold opacity-50"
+                alt="man planning"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 fs-3 d-flex justify-content-center align-items-center"
+                >
+                  Middle East
+                </h5>
+              </div>
+            </div>
           </div>
           <div class="col-md-4">
-            <img
-              src="/images/Places-to-visit/Africa.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <div class="card text-bg-dark border-2 place-card">
+              <img
+                src="/images/Places-to-visit/Africa.jpg"
+                class="card-img fst-bold opacity-50"
+                alt="man planning"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 fs-3 d-flex justify-content-center align-items-center"
+                >
+                  Africa
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="row">
           <div class="col-md-4">
-            <img
-              src="/images/Places-to-visit/North-america.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <div class="card text-bg-dark border-2 place-card">
+              <img
+                src="/images/Places-to-visit/North-america.jpg"
+                class="card-img fst-bold opacity-50"
+                alt="man planning"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 fs-3 d-flex justify-content-center align-items-center"
+                >
+                  North America
+                </h5>
+              </div>
+            </div>
           </div>
           <div class="col-md-4">
-            <img
-              src="/images/Places-to-visit/Oceania.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <div class="card text-bg-dark border-2 place-card">
+              <img
+                src="/images/Places-to-visit/Oceania.jpg"
+                class="card-img fst-bold opacity-50"
+                alt="man planning"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 fs-3 d-flex justify-content-center align-items-center"
+                >
+                  Oceania
+                </h5>
+              </div>
+            </div>
           </div>
           <div class="col-md-4">
-            <img
-              src="/images/Places-to-visit/South-America.jpg"
-              class="d-block w-100"
-              alt="..."
-            />
+            <div class="card text-bg-dark border-2 place-card">
+              <img
+                src="/images/Places-to-visit/South-America.jpg"
+                class="card-img fst-bold opacity-50"
+                alt="man planning"
+              />
+              <div class="card-img-overlay">
+                <h5
+                  id="title-head"
+                  class="card-title fs-4 w-100 h-100 fs-3 d-flex justify-content-center align-items-center"
+                >
+                  South America
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>

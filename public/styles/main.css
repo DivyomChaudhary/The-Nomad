@@ -109,3 +109,16 @@ a{
         display: block;
     }
 }
+
+.place-card{
+    height: 270px;
+
+    &:hover{
+        transform:translateX(-0px) translateY(-0px);
+        .card-img-overlay{
+            transform: scale(1.05);
+            transition-duration: 1000ms;
+            transition-property: all;
+        }
+    }
+}
