@@ -23,6 +23,10 @@
     font-weight: 200;
 }
 
+.vh-90{
+    height: 90vh;
+}
+
 .border-right{
     border-right: 0.05rem solid gray;
     opacity: 60;
@@ -121,4 +125,8 @@ a{
             transition-property: all;
         }
     }
+}
+
+i{
+    font-size: 1.5rem;
 }

@@ -25,6 +25,11 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.static("public"));
 
 app.get("/", (req, res) =>
+{
+    res.sendFile("/index.html");
+})
+
+app.get("/main", (req, res) =>
 {   
     console.log(newBlog);
     res.render("index.ejs", {
@@ -82,7 +87,7 @@ app.post("/upload", upload.single("highlight"), (req, res) =>
     };
 
     newBlog.push(newBlogEntry);
-    return res.redirect("/");
+    return res.redirect("/main");
 })
 
 app.post("/remove", (req, res) => {
