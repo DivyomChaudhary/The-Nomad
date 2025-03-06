@@ -70,10 +70,6 @@ a{
     height: 85vh;
 }
 
-.alter-w-75{
-    width: 75%;
-}
-
 .alter-w-50{
     width: 50%;
 }
@@ -99,16 +95,18 @@ a{
         width: 1000px;
     }
 
-    .alter-w-75{
-        width: 100%;
-    }
-
     .alter-p{
         padding-bottom: 1.25rem;
     }
 
     .alter-w-25{
         width: 100%;
+    }
+}
+
+@media screen and (max-width : 390px){
+    .hero{
+        margin: 0px !important;
     }
 }
 

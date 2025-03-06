@@ -67,6 +67,7 @@ app.post("/submit", (req, res) =>
     else{
         res.render("auth.ejs",{
             thisYear : theDate,
+            error: true, //for adding error modal
         });
     }
 })
