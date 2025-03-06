@@ -70,6 +70,10 @@ a{
     height: 85vh;
 }
 
+.alter-w-75{
+    width: 75%;
+}
+
 .alter-w-50{
     width: 50%;
 }
@@ -88,6 +92,14 @@ a{
 
 @media screen and (max-width: 991px) {
     .alter-w-50{
+        width: 100%;
+    }
+
+    #adminForm{
+        width: 1000px;
+    }
+
+    .alter-w-75{
         width: 100%;
     }
 

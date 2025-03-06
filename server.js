@@ -26,7 +26,7 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) =>
 {
-    res.redirect("/index.html");
+    res.sendFile("/index.html");
 })
 
 app.get("/main", (req, res) =>
