@@ -17,15 +17,6 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'views'));
 
-// Connect to Atlas
-mongoose.connect('mongodb+srv://myAtlasDBUser:XncW5CZ6Bx4aEWFy@myatlasclusteredu.capf7ft.mongodb.net/blogDB?retryWrites=true&w=majority&appName=myAtlasClusterEDU')
-.then(() => {
-    console.log("Successfully connected to MongoDB Atlas!");
-})
-.catch((err) => {
-    console.error("Error connecting to MongoDB Atlas:", err);
-});
-
 app.use("/", blogRoutes);
 
 // Export the app to be used by server.js
