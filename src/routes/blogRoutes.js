@@ -6,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { Blog, DefaultBlog } from "../models/blog.js";
+import User from "../models/user.js";
 
 const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
@@ -50,24 +51,69 @@ router.get("/admin", (req, res) => {
   });
 });
 
-router.post("/submit", (req, res) => {
-  const TRUE_USER = process.env.TRUE_USER;
-  const TRUE_PWD = process.env.TRUE_PWD;
+router.post("/submit", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const user = await User.findOne({ username: username, password: password });
 
-  var user = req.body["username"];
-  var pwd = req.body["password"];
+        if (user) {
+            res.render("new-blog.ejs", {
+                adminName: user.username,
+                thisYear: theDate,
+            });
+        } else {
+            res.render("auth.ejs", {
+                thisYear: theDate,
+                error: true,
+                message: "Invalid username or password.",
+            });
+        }
+    } catch (err) {
+        console.error("Login error:", err);
+        res.render("auth.ejs", {
+            thisYear: theDate,
+            error: true,
+            message: "An error occurred during login.",
+        });
+    }
+});
 
-  if (user === TRUE_USER && pwd === TRUE_PWD) {
-    res.render("new-blog.ejs", {
-      adminName: user,
-      thisYear: theDate,
+router.get("/signup", (req, res) => {
+    res.render("signup.ejs", {
+        thisYear: theDate,
+        error: false,
+        message: null
     });
-  } else {
-    res.render("auth.ejs", {
-      thisYear: theDate,
-      error: true,
-    });
-  }
+});
+
+router.post("/signup", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.render("signup.ejs", {
+                thisYear: theDate,
+                error: true,
+                message: "Username already exists. Please choose a different one."
+            });
+        }
+        
+        const newUser = new User({ username, password });
+        await newUser.save();
+        res.redirect("/admin"); // Redirect to auth.ejs
+    } catch (err) {
+        console.error("Error creating user:", err);
+        let errorMessage = "Error creating user.";
+        if (err.code === 11000) {
+            errorMessage = "Username already exists. Please choose a different one.";
+        }
+        res.render("signup.ejs", {
+            thisYear: theDate,
+            error: true,
+            message: errorMessage
+        });
+    }
 });
 
 // Route to upload a new blog, saving it to MongoDB

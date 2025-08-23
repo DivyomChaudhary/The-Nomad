@@ -1,89 +1,58 @@
-<%- include ("partials/header") %> <%- include ("partials/navbar") %>
+<%- include ("partials/header") %>
+<%- include ("partials/navbar") %>
+
 <div class="container">
-  <main class="form-signin w-100 d-flex justify-content-center" id="adminForm">
-    <form action="/submit" method="POST">
-      <img class="mb-4" src="/images/logo.png" alt="" width="72" height="57" />
-      <h1 class="h3 mb-3 fw-normal">Register</h1>
+    <main class="form-signin w-100 d-flex justify-content-center mt-5" id="signupForm">
+        <form action="/signup" method="POST" class="text-center">
+            <img class="mb-4" src="/images/logo.png" alt="logo" width="72" height="57" />
+            <h1 class="h3 mb-3 fw-normal">Create Account</h1>
 
-      <div class="row pb-1">
-        <div class="col-xl-8 col-md-12 alter-p">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control w-100"
-              id="floatingInput"
-              name="username"
-              placeholder="Enter Username"
-              autocomplete="on"
-              required
-            />
-            <label for="floatingInput">Username</label>
-          </div>
-        </div>
-      </div>
+            <div class="row pb-1">
+                <div class="col-xl-8 col-md-12 mx-auto alter-p">
+                    <div class="form-floating">
+                        <input
+                            type="text"
+                            class="form-control w-100"
+                            id="signupUsername"
+                            name="username"
+                            placeholder="Choose Username"
+                            autocomplete="username"
+                            required
+                        />
+                        <label for="signupUsername">Username</label>
+                    </div>
+                </div>
+            </div>
 
-      <div class="row">
-        <div class="col-xl-8 col-md-12 alter-p">
-          <div class="form-floating">
-            <input
-              type="password"
-              class="form-control"
-              id="floatingPassword"
-              name="password"
-              placeholder="Password"
-              required
-            />
-            <label for="floatingPassword">Password</label>
-          </div>
-        </div>
-      </div>
+            <div class="row">
+                <div class="col-xl-8 col-md-12 mx-auto alter-p">
+                    <div class="form-floating">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="signupPassword"
+                            name="password"
+                            placeholder="Password"
+                            autocomplete="new-password"
+                            required
+                        />
+                        <label for="signupPassword">Password</label>
+                    </div>
+                </div>
+            </div>
 
-      <div class="form-check text-start my-3">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value="remember-me"
-          id="flexCheckDefault"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Remember me
-        </label>
-      </div>
-      <button class="btn btn-success py-2 px-3" type="submit">Register</button>
-    </form>
+            <div class="row mt-3">
+                <div class="col-xl-8 col-md-12 mx-auto alter-p">
+                    <% if (error) { %>
+                        <div class="alert alert-danger text-center" role="alert">
+                            <%= message || "An error occurred during signup." %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
 
-    <div
-      class="modal fade"
-      id="errorModal"
-      tabindex="-1"
-      aria-labelledby="errorModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header bg-danger">
-            <h1 class="modal-title fs-5" id="errorModalLabel">Error</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">Invalid username or password.</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+            <button class="w-100 btn btn-success py-2 px-3 mt-3" type="submit">Sign Up</button>
+            <p class="mt-3 mb-5">Already have an account? <a href="/admin">Login here</a></p>
+        </form>
+    </main>
 </div>
-
-<%-include ("partials/footer") %>
