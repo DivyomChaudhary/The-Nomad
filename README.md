@@ -44,7 +44,7 @@ Follow these steps to get a copy of the project up and running on your local mac
 1.  **Clone the Repository**
     Open your terminal or command prompt and run the following command to clone the project:
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/DivyomChaudhary/The-Nomad.git
     cd the-nomad
     ```
 
