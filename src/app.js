@@ -12,7 +12,6 @@ const __dirname = dirname(__filename);
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'views'));

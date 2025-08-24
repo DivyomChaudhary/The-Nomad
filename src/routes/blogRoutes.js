@@ -26,6 +26,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+router.get('/', (req, res) => {
+    res.redirect('/main');
+});
+
 // Route to get all blogs and render the main page
 router.get("/main", async (req, res) => {
   try {
