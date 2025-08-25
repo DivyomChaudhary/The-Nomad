@@ -1,36 +1,27 @@
 import express from "express";
-import multer from "multer";
 import mongoose from "mongoose";
-import fs from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
+
+import upload from '../utils/upload.js';
 import { Blog, DefaultBlog } from "../models/blog.js";
 import User from "../models/user.js";
 
 const router = express.Router();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
-const theDate = new Date().getFullYear();
-
-// Multer for file upload locally
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    return cb(null, "./public/images/uploads");
-  },
-  filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}-${file.originalname}`);
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 
-const upload = multer({ storage });
+const theDate = new Date().getFullYear();
 
 router.get('/', (req, res) => {
     res.redirect('/main');
 });
 
-// Route to get all blogs and render the main page
 router.get("/main", async (req, res) => {
   try {
     // Fetch all user-submitted blogs from the 'blogs' collection
@@ -127,14 +118,16 @@ router.post("/upload", upload.single("highlight"), async (req, res) => {
 
   try {
     const { titleName, authorName, description } = req.body;
-    const image = req.file ? `/images/uploads/${req.file.filename}` : null;
+    // Capture the S3 URL from req.file.location
+    // If no file is uploaded, image will be null
+    const image = req.file ? req.file.location : null;
 
     // Create a new document instance with the provided data
     const newBlogEntry = new Blog({
       title: titleName,
       author: authorName,
       description: description,
-      image: image,
+      image: image, //* Store the S3 URL in the database
     });
 
     // Save the document to the 'blogs' collection
@@ -146,50 +139,45 @@ router.post("/upload", upload.single("highlight"), async (req, res) => {
   }
 });
 
-// Route to remove a blog using MongoDB ID
 router.post("/remove", async (req, res) => {
   try {
     const blogId = req.body.id;
 
-    // Validate the incoming ID to prevent server crashes
     if (!mongoose.isValidObjectId(blogId)) {
       console.error("Invalid Blog ID format:", blogId);
       return res.status(400).send("Invalid Blog ID.");
     }
 
-    // Delete the document from the database
-    // findByIdAndDelete returns the document that was deleted, which we need for the image path
     const deletedBlog = await Blog.findByIdAndDelete(blogId);
     if (!deletedBlog) {
       console.log("Blog not found with the given ID.");
       return res.status(404).send("Blog not found.");
     }
 
-    // Delete the associated image file
+    // Delete the associated image file from S3
     if (deletedBlog.image) {
-      // path.basename to get only the filename from the database path
-      const imageFilename = path.basename(deletedBlog.image);
-      const imagePath = path.join(
-        __dirname,
-        "public",
-        "images",
-        "uploads",
-        imageFilename
-      );
-      console.log("Attempting to delete image at:", imagePath);
-      try {
-        await fs.unlink(imagePath);
-        console.log("Image deleted successfully:", imagePath);
-      } catch (fsErr) {
-        // Check if the error is because the file doesn't exist (ENOENT)
-        if (fsErr.code === "ENOENT") {
-          console.warn("File not found, but DB entry was deleted:", imagePath);
-        } else {
-          console.error("Error deleting image file:", fsErr);
+      // Create a URL object to correctly parse the pathname, normal bucket name was throwing errors
+      const urlObject = new URL(deletedBlog.image);
+      // The pathname starts with a slash, so we slice it off to get the key
+      const s3Key = urlObject.pathname.slice(1);
+
+      if (s3Key) {
+        const deleteParams = {
+          Bucket: process.env.S3_BUCKET_NAME,
+          Key: s3Key,
+        };
+        console.log("Attempting to delete image from S3 with key:", s3Key);
+        try {
+          await s3.send(new DeleteObjectCommand(deleteParams));
+          console.log("Image deleted successfully from S3:", s3Key);
+        } catch (s3Err) {
+          console.error("Error deleting image from S3:", s3Err);
         }
+      } else {
+          console.warn("Could not extract S3 key from image URL:", deletedBlog.image);
       }
     }
-    console.log("Blog entry and image deletion process complete.");
+    console.log("Blog entry and S3 image deletion process complete.");
     res.redirect("/main");
   } catch (err) {
     console.error("Error deleting blog entry:", err);
@@ -347,10 +335,6 @@ router.get("/about", (req, res) => {
   res.render("about.ejs", {
     thisYear: theDate,
   });
-});
-
-router.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "public" });
 });
 
 export default router;

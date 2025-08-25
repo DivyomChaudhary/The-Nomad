@@ -14,7 +14,7 @@
       <header
         class="mb-auto text-center d-flex flex-column align-items-center"
       ></header>
-  
+ 
       <div class="px-3 my-5 pt-5 text-center text-dark hero">
         <p class="lead fs-1">Travel the World, smarter, handier and longer!</p>
         <p class="fs-5 text-dark">
@@ -136,7 +136,7 @@
             </div>
           </a>
         </div>
-      </div>
+        </div>
       <div class="col-xl-4 col-md-12 mb-3">
         <div class="bg-whit">
           <a href="blog/family-travel">
@@ -455,9 +455,10 @@
     <% newBlog.forEach((blog, index) => { %>
     <div class="col-xl-4 col-md-12 mb-3" data-title="<%= blog.title %>">
       <div class="bg-dark text-center">
-        <form action="/remove" method="POST">
-          <input type="hidden" name="index" value="<%= index %>" />
-          <a href="/new-blog/<%= index %>">
+        <form action="/remove" method="POST" class="remove-form" id="removeForm_<%= blog._id.toString() %>">
+          <input type="hidden" name="id" value="<%= blog._id.toString() %>" />
+          
+          <a href="/new-blog/<%= blog._id.toString() %>">
             <div class="card text-bg-dark border-2 border-whit br-0">
               <img
                 src="<%= blog.image %>"
@@ -474,8 +475,9 @@
               </div>
             </div>
           </a>
-          <button type="submit" class="btn btn-danger remove-btn mt-1">
-            Remove
+          <button type="submit" class="btn btn-danger remove-btn mt-1" id="removeBtn_<%= blog._id.toString() %>">
+            <span id="removeBtnText_<%= blog._id.toString() %>">Remove</span>
+            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="removeSpinner_<%= blog._id.toString() %>"></span>
           </button>
         </form>
       </div>
@@ -483,4 +485,114 @@
     <% }); %>
   </div>
 </div>
-<% } %> <%-include ("partials/footer") %>
+<% } %>
+<div class="container">
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Get to Know Us</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="/admin" class="nav-link p-0 text-body-secondary">Login</a></li>
+            <li class="nav-item mb-2"><a href="#Places-to-visit" class="nav-link p-0 text-body-secondary">Places to Visit</a></li>
+            <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-body-secondary">About</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+          </ul>
+        </div>
+ 
+        <div class="col-6 col-md-2 mb-3">
+          <h5></h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+          </ul>
+        </div>
+ 
+        <div class="col-6 col-md-2 mb-3">
+          <h5></h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"></a></li>
+          </ul>
+        </div>
+ 
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-success" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between border-top">
+        <div class="row w-100">
+          <div class="col-lg-5 col-sm-6 d-flex py-3">
+        <p> © <%= thisYear %> DC.</p>
+      </div>
+        <div class="col-lg-7 col-sm-6 d-flex justify-content-center py-2">
+          <a href="https://linkedin.com/in/divyom-chaudhary"><i class="fab fa-linkedin p-2 text-light"></i></a>
+          <a href="https://github.com/DivyomChaudhary"><i class="fab fa-github p-2 text-light"></i></a>
+          <a href="https://t.me/confidenial"><i class="fab fa-telegram p-2 text-light"></i></a>
+        </div>
+      </div>
+      </div>
+    </footer>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.remove-form').forEach(formElement => {
+            formElement.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                const formId = formElement.getAttribute('id'); 
+                
+                if (typeof formId !== 'string' || formId.trim() === '' || !formId.startsWith('removeForm_')) {
+                    formElement.submit(); 
+                    return; 
+                }
+
+                const blogObjectId = formId.replace('removeForm_', ''); 
+                
+                if (blogObjectId.trim() === '') {
+                     formElement.submit();
+                     return;
+                }
+
+                const expectedButtonId = `removeBtn_${blogObjectId}`;
+                const expectedButtonTextId = `removeBtnText_${blogObjectId}`;
+                const expectedSpinnerId = `removeSpinner_${blogObjectId}`;
+
+                const submitBtn = document.getElementById(expectedButtonId);
+                const submitBtnText = document.getElementById(expectedButtonTextId);
+                const spinner = document.getElementById(expectedSpinnerId);
+
+                if (submitBtn && submitBtnText && spinner) {
+                    submitBtnText.textContent = 'Removing...';
+                    spinner.classList.remove('d-none'); 
+                    submitBtn.disabled = true; 
+
+                    setTimeout(() => {
+                        formElement.submit(); 
+                    }, 500); 
+                } else {
+                    formElement.submit(); 
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

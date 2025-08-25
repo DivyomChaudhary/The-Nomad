@@ -5,56 +5,71 @@
 </h1>
 
 <div class="container-fluid px-5 pt-5 pb-3">
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <div class="mb-3">
-      <div class="row alter-w-50">
-        <div class="col-xl-6 col-md-12 alter-p">
-          <label for="FormControlInput1" class="form-label">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="FormControlInput1"
-            placeholder="Your name on the blog"
-            name="authorName"
-          />
-        </div>
-        <div class="col-xl-6 col-md-12">
-          <label for="FormControlInput2" class="form-label">Title</label>
-          <input
-            type="text"
-            class="form-control"
-            id="FormControlInput2"
-            placeholder="Your blog title"
-            name="titleName"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="FormControlTextarea1" class="form-label"
-        >Blog Description</label
-      >
-      <textarea
-        class="form-control"
-        id="FormControlTextarea1"
-        rows="7"
-        placeholder="The place I went to..."
-        name="description"
-      ></textarea>
-    </div>
+<form action="/upload" method="POST" enctype="multipart/form-data" id="newBlogForm">
+<div class="mb-3">
+<div class="row alter-w-50">
+<div class="col-xl-6 col-md-12 alter-p">
+<label for="FormControlInput1" class="form-label">Name</label>
+<input
+type="text"
+class="form-control"
+id="FormControlInput1"
+placeholder="Your name on the blog"
+name="authorName"
+/>
+</div>
+<div class="col-xl-6 col-md-12">
+<label for="FormControlInput2" class="form-label">Title</label>
+<input
+type="text"
+class="form-control"
+id="FormControlInput2"
+placeholder="Your blog title"
+name="titleName"
+/>
+</div>
+</div>
+</div>
+<div class="mb-3">
+<label for="FormControlTextarea1" class="form-label"
+>Blog Description</label
+>
+<textarea
+class="form-control"
+id="FormControlTextarea1"
+rows="7"
+placeholder="The place I went to..."
+name="description"
+></textarea>
+</div>
 
-    <div class="mb-2 alter-w-25">
-      <label for="formFile" class="form-label">Upload Your Highlight</label>
-      <input
-        class="form-control"
-        type="file"
-        id="formFile"
-        name="highlight"
-        accept=".jpg, .jpeg, .png, .webp, .avif"
-      />
-    </div>
-    <button type="submit" class="btn btn-primary">Upload</button>
-  </form>
+<div class="mb-2 alter-w-25">
+<label for="formFile" class="form-label">Upload Your Highlight</label>
+<input
+class="form-control"
+type="file"
+id="formFile"
+name="highlight"
+accept=".jpg, .jpeg, .png"
+/>
+</div>
+<button type="submit" class="btn btn-primary" id="uploadSubmitButton">Upload
+  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="uploadSpinner"></span>
+</button>
+</form>
 </div>
 
 <%- include ("partials/mini-footer") %>
+
+<script>
+    document.getElementById('newBlogForm').addEventListener('submit', function(event) {
+        const submitBtn = document.getElementById('uploadSubmitButton');
+        const spinner = document.getElementById('uploadSpinner');
+
+        spinner.classList.remove('d-none');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Uploading... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    });
+</script>
+</body>
+</html>
